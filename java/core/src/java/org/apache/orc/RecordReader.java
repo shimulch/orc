@@ -62,4 +62,7 @@ public interface RecordReader extends Closeable {
    * Seek to a particular row number.
    */
   void seekToRow(long rowCount) throws IOException;
+
+  // lorc specific case
+  int getCurrentStripe();
 }

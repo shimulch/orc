@@ -1345,4 +1345,11 @@ public class RecordReaderImpl implements RecordReader {
   public int getMaxDiskRangeChunkLimit() {
     return maxDiskRangeChunkLimit;
   }
+
+  /**
+   * While reading get currentStripe. Required for indexing which stripe the data contains.
+   * @learned index specific case
+   * @return
+   */
+  public int getCurrentStripe() { return currentStripe; }
 }

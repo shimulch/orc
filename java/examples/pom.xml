@@ -37,6 +37,11 @@
       <artifactId>orc-core</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.orc</groupId>
+      <artifactId>learned</artifactId>
+    </dependency>
+
     <!-- inter-project -->
     <dependency>
       <groupId>com.google.guava</groupId>

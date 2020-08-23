@@ -59,6 +59,7 @@
     <module>mapreduce</module>
     <module>tools</module>
     <module>examples</module>
+    <module>learned</module>
   </modules>
 
   <properties>
@@ -388,6 +389,11 @@
         <groupId>org.apache.orc</groupId>
         <artifactId>orc-core</artifactId>
         <version>1.6.3</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.orc</groupId>
+        <artifactId>learned</artifactId>
+        <version>1.6.4-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.apache.orc</groupId>
