@@ -58,6 +58,7 @@
     <module>core</module>
     <module>mapreduce</module>
     <module>tools</module>
+    <module>learned</module>
     <module>examples</module>
   </modules>
 
