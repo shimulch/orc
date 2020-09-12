@@ -19,6 +19,7 @@ public class Benchmark {
 
     private static void convert(String[] args) throws IOException, org.json.simple.parser.ParseException {
         TPCDataConverter converter = new TPCDataConverter();
-        converter.writeFromRefData(args[0], args[1], args[2]);
+        System.out.println("Arguments: " + args.toString());
+        converter.writeFromRefData(args[1], args[2], args[3]);
     }
 }
