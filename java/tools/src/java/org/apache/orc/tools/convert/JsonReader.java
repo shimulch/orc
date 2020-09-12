@@ -380,4 +380,9 @@ public class JsonReader implements RecordReader {
   public void seekToRow(long rowCount) throws IOException {
     throw new UnsupportedOperationException("Seek is not supported by JsonReader");
   }
+
+  @Override
+  public int getCurrentStripe() {
+    throw new UnsupportedOperationException("Stripe not supported by JsonReader");
+  }
 }

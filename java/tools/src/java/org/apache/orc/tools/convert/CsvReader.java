@@ -134,6 +134,11 @@ public class CsvReader implements RecordReader {
     throw new UnsupportedOperationException("Seeking not supported");
   }
 
+  @Override
+  public int getCurrentStripe() {
+    throw new UnsupportedOperationException("Stripe not supported in CSVReader");
+  }
+
   abstract class ConverterImpl implements Converter {
     final int offset;
 
