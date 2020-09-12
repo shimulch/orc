@@ -60,6 +60,7 @@
     <module>tools</module>
     <module>learned</module>
     <module>examples</module>
+    <module>proof</module>
   </modules>
 
   <properties>
