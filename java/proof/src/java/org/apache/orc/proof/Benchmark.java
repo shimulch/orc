@@ -8,14 +8,24 @@ import java.net.URISyntaxException;
 
 public class Benchmark {
 
-    public static void main(String[] args) throws ParseException, IOException, org.json.simple.parser.ParseException {
+    public static void main(String[] args) throws ParseException, IOException, org.json.simple.parser.ParseException, URISyntaxException {
         Options options = new Options();
-        options.addOption("convert", true, "Convert from tpc-h data to orc");
+        options.addOption("convert", true, "Convert from tpc-h data to orc. <data-dir> <schema.json> <output-file>");
+        options.addOption("index", true, "Index an Orc file. <orc-file> <column-num-to-index>");
+        options.addOption("search", true, "Search a value from orc file using learned index. <orc-file> <value-to-find>");
+
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
 
         if(cmd.hasOption("convert")) {
             convert(args);
+        } else if (cmd.hasOption("index")) {
+            index(args);
+        } else if (cmd.hasOption("search")) {
+            search(args);
+        } else {
+            HelpFormatter helpFormatter = new HelpFormatter();
+            helpFormatter.printHelp("proof", options);
         }
     }
 
