@@ -38,7 +38,6 @@ public class IndexRowList extends ArrayList<IndexRow> implements Comparator<Inde
 
     @Override
     public int compare(IndexRow o1, IndexRow o2) {
-        System.out.println("Compare " + o1.getIndexValue() + " == " + o2.getIndexValue());
         return Float.compare(o1.getIndexValue(), o2.getIndexValue());
     }
 }
