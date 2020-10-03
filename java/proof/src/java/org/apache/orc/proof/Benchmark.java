@@ -1,10 +1,12 @@
 package org.apache.orc.proof;
 
 import org.apache.commons.cli.*;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.orc.learned.IndexManager;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 
 public class Benchmark {
 
@@ -37,7 +39,13 @@ public class Benchmark {
 
     private static void index(String[] args) throws IOException, URISyntaxException {
         IndexManager manager = new IndexManager();
-        manager.index(args[1], Integer.parseInt(args[2]));
+        Integer[] stages;
+        if(args.length == 4) {
+            stages = (Integer[]) Arrays.stream(args[3].split(",")).map(Integer::parseInt).toArray();
+        } else {
+            stages = new Integer[]{10, 100, 1000};
+        }
+        manager.index(args[1], Integer.parseInt(args[2]), ArrayUtils.toPrimitive(stages));
     }
 
     private static void search(String[] args) throws IOException, URISyntaxException {

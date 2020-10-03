@@ -9,7 +9,7 @@ public class LearnedOrc {
 
     public static void main(String[] args) throws IOException, URISyntaxException {
         IndexManager manager = new IndexManager();
-//        manager.index("./order.orc", 0);
+        manager.index("./order.orc", 0, new int[]{10, 100, 1000});
         manager.filter("./order.orc", 1849934);
     }
 }

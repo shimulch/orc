@@ -20,7 +20,7 @@ import java.net.URISyntaxException;
 
 public class IndexManager {
 
-    public void index(String orcFilePath, int columnIndex) throws IOException, URISyntaxException {
+    public void index(String orcFilePath, int columnIndex, int[] stages) throws IOException, URISyntaxException {
         Configuration conf = new Configuration();
         Reader reader = OrcFile.createReader(new Path(orcFilePath), OrcFile.readerOptions(conf));
         VectorizedRowBatch batch = reader.getSchema().createRowBatch();
@@ -50,7 +50,7 @@ public class IndexManager {
             }
         }
 
-        Trainer trainer = new Trainer(rowList.getDataset(), new int[]{10, 100, 1000});
+        Trainer trainer = new Trainer(rowList.getDataset(), stages);
         trainer.train();
         trainer.calculateErrors();
         IndexIO indexIO = new IndexIO(conf);
