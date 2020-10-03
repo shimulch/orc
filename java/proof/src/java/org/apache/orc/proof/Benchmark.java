@@ -7,6 +7,7 @@ import org.apache.orc.learned.IndexManager;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Benchmark {
 
@@ -39,13 +40,13 @@ public class Benchmark {
 
     private static void index(String[] args) throws IOException, URISyntaxException {
         IndexManager manager = new IndexManager();
-        Integer[] stages;
+        int[] stages;
         if(args.length == 4) {
-            stages = (Integer[]) Arrays.stream(args[3].split(",")).map(Integer::parseInt).toArray();
+            stages = Arrays.stream(args[3].split(",")).mapToInt(Integer::parseInt).toArray();
         } else {
-            stages = new Integer[]{10, 100, 1000};
+            stages = new int[]{10, 100, 1000};
         }
-        manager.index(args[1], Integer.parseInt(args[2]), ArrayUtils.toPrimitive(stages));
+        manager.index(args[1], Integer.parseInt(args[2]), stages);
     }
 
     private static void search(String[] args) throws IOException, URISyntaxException {
