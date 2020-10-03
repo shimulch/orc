@@ -27,11 +27,32 @@ public class IndexRowList extends ArrayList<IndexRow> implements Comparator<Inde
     public IndexRowList search(float valueToFind, Prediction prediction) {
         IndexRowList filtered = new IndexRowList();
         IndexRow searchItem = new IndexRow(valueToFind, 0, 0);
-        List<IndexRow> range = this.subList(prediction.getStart(), prediction.getEnd());
+        List<IndexRow> range = this.subList(prediction.getStart(), Math.min(this.size(), prediction.getEnd()));
 
         int index = Collections.binarySearch(range, searchItem, this);
-        if(index > 0) {
-            filtered.add(range.get(index));
+
+        if(index >= 0) {
+
+            // calculate actual index on full list
+            int foundAt = index + prediction.getStart();
+
+            filtered.add(this.get(foundAt));
+
+            int up = foundAt - 1;
+            int down = foundAt + 1;
+
+            // find all item that has same value before search result index
+            while(up >= 0 && Float.compare(this.get(up).getIndexValue(), valueToFind) == 0) {
+                filtered.add(this.get(up));
+                up--;
+            }
+
+            // find all item that has same value after search result index
+            while(down < this.size() && Float.compare(this.get(down).getIndexValue(), valueToFind) == 0) {
+                filtered.add(this.get(down));
+                down++;
+            }
+
         }
         return filtered;
     }
